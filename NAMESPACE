@@ -2,5 +2,7 @@
 
 export(archive_asgmts)
 export(get_qx)
+export(interview_stats)
 export(unarchive_asgmts)
+importFrom(magrittr,"%>%")
 importFrom(rlang,.data)

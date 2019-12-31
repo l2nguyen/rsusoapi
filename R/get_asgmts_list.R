@@ -38,21 +38,24 @@
 #' \dontrun{
 #' ## Using template ID
 #' all_assignments <- get_asgmts_list(template_id = "68b8a85fd7a84c45b4bb0c2c1c19c53f",
-#' version=3, server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
+#' version=3, server = "lfs2018",
+#' user = "APIuser2018", password = "SafePassword123")
 #'
 #' ## Using questionnaire name
 #' all_assign_use_qx <- get_asgmts_list(qx_name = "Labour Force Survey 2018 Q1",
 #'  version=3, server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #'
 #' ## Filter by user responsible
-#' super1_assignments <- get_asgmts_list(qx_name = qx_name = "Labour Force Survey 2018 Q1",
+#' super1_assignments <- get_asgmts_list(qx_name = "Labour Force Survey 2018 Q1",
 #'  version=3, responsible="Supervisor1",
 #'  server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #'
 #' ## Export to Excel
 #' get_asgmts_list(qx_name = "Labour Force Survey 2018 Q1", version=3,
-#' output = "excel", output_path="/User/bar/Documents/active_assignments.xlsx",
-#' server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
+#' output = "excel",
+#' output_path="/User/bar/Documents/active_assignments.xlsx",
+#' server = "lfs2018", user = "APIuser2018",
+#' password = "SafePassword123")
 #' }
 
 get_asgmts_list <- function(template_id = NULL, qx_name = NULL, version = NULL,

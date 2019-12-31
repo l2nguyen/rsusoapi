@@ -24,6 +24,6 @@ imported on the server
 }
 \examples{
 \dontrun{
-get_qx(server = "lf2018", user = "APIuser2018", password = "SafePassword123")
+get_qx(server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 }
 }

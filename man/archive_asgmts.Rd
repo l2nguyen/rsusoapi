@@ -33,7 +33,7 @@ provided.
 \examples{
 ## archive assignments with ID numbers 4, 18, 195
 \dontrun{
-archive_asgmts(ids = c(4, 18, 195), server = "lf2018",
+archive_asgmts(ids = c(4, 18, 195), server = "lfs2018",
 user = "APIuser2018", password = "SafePassword123")
 }
 ## unarchive assignments with ID numbers 4, 18, 195

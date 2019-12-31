@@ -43,7 +43,7 @@ int_ids <- c("5970be83582840df972082c578816dba", "47748cf7aa0641a692a1fffc508a43
 "61ef820e5bac466e829355abe42bc137", "63053caafa424a8d993cc22be2c9baf0")
 
 ## Get statistics for those interviews
-interview_stats(ids = int_ids, server = "lf2018",
+interview_stats(ids = int_ids, server = "lfs2018",
 user = "APIuser2018", password = "SafePassword123")
 }
 }

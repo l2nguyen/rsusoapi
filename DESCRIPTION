@@ -21,9 +21,11 @@ Imports:
     jsonlite,
     magrittr,
     rlang,
+    readr,
     stringr,
-    tidyr,
-    utils
+    tidyr (>= 1.0.0),
+    utils,
+    writexl
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2

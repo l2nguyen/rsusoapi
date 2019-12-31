@@ -8,8 +8,6 @@
 #' @param user Username for the API user on the server.
 #' @param password Password for the API user on the server.
 #'
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET
 #' @importFrom rlang .data
 #' @export
 #'
@@ -20,7 +18,7 @@
 #' get_qx(server = "lf2018", user = "APIuser2018", password = "SafePassword123")
 #' }
 
-get_qx <- function(server, user, password) {
+get_qx <- function(server="", user="", password="") {
 
   # trim and lower server prefix
   server <- tolower(trimws(server))
@@ -75,7 +73,6 @@ get_qx <- function(server, user, password) {
       qnrList_temp <- dplyr::bind_rows(quest_more)
       qnrList_all <- dplyr::arrange(qnrList_temp, .data$Title, .data$Version)
     }
-
   } else if (httr::status_code(data) == 401) {   # login error
     stop("Incorrect username or password.")
   } else { # Issue error message

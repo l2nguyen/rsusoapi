@@ -25,18 +25,18 @@ Assignments corresponding to the ID number provided are archived or
 unarchived.
 }
 \description{
-code{archive_asgmts} archives the assignments corresponding to the ID number(s)
+\code{archive_asgmts} archives the assignments corresponding to the ID number(s)
 provided.
-code{unarchive_asgmts} unarchive the assignments corresponding to the ID number(s)
+\code{unarchive_asgmts} unarchive the assignments corresponding to the ID number(s)
 provided.
 }
 \examples{
-## archive assignments
+## archive assignments with ID numbers 4, 18, 195
 \dontrun{
 archive_asgmts(ids = c(4, 18, 195), server = "lf2018",
 user = "APIuser2018", password = "SafePassword123")
 }
-## unarchive assignments
+## unarchive assignments with ID numbers 4, 18, 195
 \dontrun{
 unarchive_asgmts(ids = c(4, 18, 195), server = "lf2018",
 user = "APIuser2018", password = "SafePassword123")

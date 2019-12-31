@@ -1,8 +1,8 @@
 #' Archive or unarchive assignments on the server
 #'
-#' code{archive_asgmts} archives the assignments corresponding to the ID number(s)
+#' \code{archive_asgmts} archives the assignments corresponding to the ID number(s)
 #' provided.
-#' code{unarchive_asgmts} unarchive the assignments corresponding to the ID number(s)
+#' \code{unarchive_asgmts} unarchive the assignments corresponding to the ID number(s)
 #' provided.
 #'
 #' @param ids Assignment IDs to archive or unarchive. This accepts a vector so multiple

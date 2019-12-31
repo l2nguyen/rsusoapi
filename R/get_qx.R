@@ -1,6 +1,6 @@
 #' Get all templates imported on the server
 #'
-#' code{get_qx} returns a data frame with all the questionnaires that are currently
+#' \code{get_qx} returns a data frame with all the questionnaires that are currently
 #' imported on the server
 #'
 #' @param server Prefix for the survey server. It is whatever comes before

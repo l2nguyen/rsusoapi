@@ -1,5 +1,5 @@
 Type: Package
-Package: rsusoapi
+Package: susoapir
 Title: API wrapper for Survey Solutions
 Version: 0.1.0
 Authors@R: 

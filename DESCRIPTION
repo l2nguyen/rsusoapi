@@ -1,0 +1,27 @@
+Type: Package
+Package: rsusoapi
+Title: API wrapper for Survey Solutions
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Lena",
+             family = "Nguyen",
+             role = c("aut", "cre"),
+             email = "lena.nguyen4@gmail.com"),
+      person(given = "Arthur",
+             family = "Shaw",
+             role = "ctb"))
+Description: Toolkit of wrapper functions in R to make it easier
+    to use the Survey Solutions API.
+License: MIT + file LICENSE
+Depends:
+    R (>= 3.2.0)
+Imports:
+    dplyr,
+    httr,
+    jsonlite,
+    magrittr,
+    stringr,
+    tidyr,
+    utils
+Encoding: UTF-8
+LazyData: true

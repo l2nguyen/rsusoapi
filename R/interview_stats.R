@@ -38,7 +38,7 @@
 #' user = "APIuser2018", password = "SafePassword123")
 #' }
 
-interview_stats <- function(ids=NULL, server="", user="", password=""){
+interview_stats <- function(ids=NULL, server, user, password){
 
   ###====== CHECK INPUTS ======###
   # check that server, user, password are non-missing and strings
@@ -47,7 +47,7 @@ interview_stats <- function(ids=NULL, server="", user="", password=""){
       stop(x, "has to be a string.")
     }
     if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter is not specified in the program:", x))
+      stop(paste("The following parameter needs to be specified:", x))
     }
   }
 

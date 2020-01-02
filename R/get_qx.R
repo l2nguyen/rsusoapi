@@ -18,7 +18,17 @@
 #' get_qx(server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #' }
 
-get_qx <- function(server="", user="", password="") {
+get_qx <- function(server, user, password) {
+
+  # check that server, user, password are non-missing and strings
+  for (x in c("server", "user", "password")) {
+    if (!is.character(get(x))) {
+      stop(x, "has to be a string.")
+    }
+    if (nchar(get(x)) == 0) {
+      stop(paste("The following parameter needs to be specified:", x))
+    }
+  }
 
   # trim and lower server prefix
   server <- tolower(trimws(server))
@@ -73,6 +83,10 @@ get_qx <- function(server="", user="", password="") {
       qnrList_temp <- dplyr::bind_rows(quest_more)
       qnrList_all <- dplyr::arrange(qnrList_temp, .data$Title, .data$Version)
     }
+
+    # return data frame of questionnaire
+    return(qnrList_all)
+
   } else if (httr::status_code(data) == 401) {   # login error
     stop("Incorrect username or password.")
   } else { # Issue error message

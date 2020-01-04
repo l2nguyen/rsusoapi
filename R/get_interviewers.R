@@ -81,7 +81,7 @@ get_interviewers <- function(super_names=NULL, super_ids=NULL,
 
   #=== HELPER FUNCTION ====#
   # function to check if supervisor exists
-  sup_exists <- function(supervisor, data, stype="name"){
+  sup_exists <- function(supervisor, df, stype="name"){
     # set variable name
     var_name <- ifelse(stype=="name", "SuperName", "SuperId")
     if (!(supervisor %in% data[[var_name]])){
@@ -160,11 +160,11 @@ get_interviewers <- function(super_names=NULL, super_ids=NULL,
   if (is.null(super_names) & is.null(super_ids)) {
     ids_to_call <- dplyr::pull(all_supers, .data$SuperId)
   } else if (length(super_names)>0) {
-    invisible(sapply(super_names, sup_exists, data=all_supers, stype="name"))
+    invisible(sapply(super_names, sup_exists, df = all_supers, stype="name"))
     # get IDs associated with users
-    ids_to_call <- sapply(super_names, get_sup_id, data = all_supers)
+    ids_to_call <- sapply(super_names, get_sup_id, df = all_supers)
   } else if (length(super_ids)>0) {
-    invisible(sapply(super_ids, sup_exists, data=all_supers, stype="id"))
+    invisible(sapply(super_ids, sup_exists, df = all_supers, stype="id"))
     # set IDs to get interviewers for
     ids_to_call <- super_ids
   } else {

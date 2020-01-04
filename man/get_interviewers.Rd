@@ -28,10 +28,15 @@ A data frame  data frame containining information about supervisor accounts.
 \description{
 \code{get_interviewers} returns a data frame containing information about interviewer
 account. Due to the current limitations of the API, only interviewers that are
-\strong{not archived/locked} appear in the output data frame.
+\strong{not archived/locked} appear in the output data frame. If a supervisor has no
+interviewers or all the interviewers on their team are locked/archived, then the output
+data frame will contain a row for that supervisor with both InterName and InterId
+being NA.
+}
+\details{
 The data frame will have the following columns:
 \itemize{
-\item InterName: Username of interviewer
+\item InterName: Username of interviewer.
 \item InterId: Unique ID of interviewer
 \item SuperName: Username of interviewer's supervisor
 \item SuperId: Unique ID of interviewer's supervisor

@@ -2,7 +2,11 @@
 #'
 #' \code{get_interviewers} returns a data frame containing information about interviewer
 #' account. Due to the current limitations of the API, only interviewers that are
-#' \strong{not archived/locked} appear in the output data frame.
+#' \strong{not archived/locked} appear in the output data frame. If a supervisor has no
+#' interviewers or all the interviewers on their team are locked/archived, then the output
+#' data frame will contain a row for that supervisor with both InterName and InterId
+#' being NA.
+#'
 #' The data frame will have the following columns:
 #' \itemize{
 #' \item InterName: Username of interviewer
@@ -117,6 +121,8 @@ get_interviewers <- function(super_names=NULL, super_ids=NULL,
 
     if (total_count == 0 | is.null(total_count)) {
       all_ints_df <- data.frame(
+        UserName = NA,
+        UserId = NA,
         IsLocked = NA,
         CreationDate = NA,
         DeviceId = NA)
@@ -180,10 +186,9 @@ get_interviewers <- function(super_names=NULL, super_ids=NULL,
                          user_id=user, pass=password)
   # bind list into one big data frame
   all_interviewers <- dplyr::bind_rows(full_df_list) %>%
-    dplyr::rename(InterName = .data$UserName, InterId = .data$UserId) %>%
-    # add supervisor information
+    # add supervisor usernames
     dplyr::inner_join(filtered_supers, by="SuperId") %>%
-    # rearrange columns
+    dplyr::rename(InterName = .data$UserName, InterId = .data$UserId) %>%
     dplyr::select(.data$InterName, .data$InterId, .data$SuperName,
                   .data$SuperId, dplyr::everything())
 

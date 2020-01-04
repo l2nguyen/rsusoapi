@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 #' Get information about supervisors on the server
-=======
-#' Get data frame of supervisors on the server
->>>>>>> 4e232426594cbc03dafaba0c767c1fcc99151c47
 #'
 #' \code{get_supers} Returns a data frame containing information about supervisors
 #' account. Due to the current limitations of the API, only supervisors that are

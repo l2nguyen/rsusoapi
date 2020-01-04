@@ -84,7 +84,7 @@ get_interviewers <- function(super_names=NULL, super_ids=NULL,
   sup_exists <- function(supervisor, df, stype="name"){
     # set variable name
     var_name <- ifelse(stype=="name", "SuperName", "SuperId")
-    if (!(supervisor %in% data[[var_name]])){
+    if (!(supervisor %in% df[[var_name]])){
       stop("User does not exist: ", supervisor)
     }
   }

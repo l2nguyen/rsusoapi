@@ -23,7 +23,7 @@ mysurvey.solutions: [prefix].mysurvey.solutions.}
 \item{password}{Password for the API user on the server.}
 }
 \value{
-A data frame  data frame containining information about supervisor accounts.
+A data frame  data frame containining information about interviewer accounts.
 }
 \description{
 \code{get_interviewers} returns a data frame containing information about interviewer
@@ -36,13 +36,13 @@ being NA.
 \details{
 The data frame will have the following columns:
 \itemize{
-\item InterName: Username of interviewer.
-\item InterId: Unique ID of interviewer
-\item SuperName: Username of interviewer's supervisor
-\item SuperId: Unique ID of interviewer's supervisor
-\item IsLocked: If interviewer is currently locked/archived
-\item CreationDate: Date the interviewer account was created
-\item DeviceId: Unique Id of the tablet that the interviewer was using on the last
+\item \emph{InterName}: Username of interviewer
+\item \emph{InterId}: Unique ID of interviewer
+\item \emph{SuperName}: Username of interviewer's supervisor
+\item \emph{SuperId}: Unique ID of interviewer's supervisor
+\item \emph{IsLocked}: If interviewer is currently locked/archived
+\item \emph{CreationDate}: Date the interviewer account was created
+\item \emph{DeviceId}: Unique Id of the tablet that the interviewer was using on the last
 synchronisation to server. If the user has never synced any data with the server
 using a tablet, this variable will be null.
 }

@@ -1,12 +1,12 @@
 #' Get information about supervisors on the server
 #'
-#' \code{get_supers} Returns a data frame containing information about supervisors
+#' \code{get_supers} returns a data frame containing information about supervisor
 #' account. Due to the current limitations of the API, only supervisors that are
 #' \strong{not archived/locked} appear in the output data frame.
 #' The data frame will have the following columns:
 #' \itemize{
-#' \item SuperName: User name of supervisors
-#' \item SuperId: Unique ID of supervisors
+#' \item SuperName: Username of supervisor
+#' \item SuperId: Unique ID of supervisor
 #' \item IsLocked: If supervisor is currently locked/archived
 #' \item CreationDate: Date the supervisor account was created
 #' \item DeviceId: Unique Id of the tablet that the user was using on the last

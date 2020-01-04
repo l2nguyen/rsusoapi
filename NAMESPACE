@@ -2,6 +2,7 @@
 
 export(archive_asgmts)
 export(get_asgmts_list)
+export(get_interviewers)
 export(get_qx)
 export(get_supers)
 export(interview_stats)

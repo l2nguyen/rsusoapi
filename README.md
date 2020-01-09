@@ -11,7 +11,7 @@ These programs uses R to interact with the Survey Solutions API so you will need
 * [R](https://cran.rstudio.com/)
 * [RStudio](https://www.rstudio.com/products/rstudio/download/)
 
-You will also need to make an API user account on your survey server. Learn how to make an API user account on the [support page](http://support.mysurvey.solutions/customer/en/portal/articles/2844104-survey-solutions-api?b_id=12728).
+You will also need to make an API user account on your survey server. Learn how to make an API user account on the [support page](https://support.mysurvey.solutions/headquarters/api/survey-solutions-api/).
 
 ## Installation
 To install this package, run the following code:

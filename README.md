@@ -25,6 +25,6 @@ Unfortunately, this package can only currently be installed from GitHub and not 
 ## Issues or suggestions
 If you encounter any issues, please report it in the [issues tab](https://github.com/l2nguyen/susoapir/issues). Suggestions for features additions are also appreciated and can also be added in the Issues tab.
 
-Contributions are highly encouraged. If you would like to add some fixes or features to the pacakge, please submit a pull request.
+Contributions are highly encouraged. If you would like to add some fixes or features to the package, please submit a pull request.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.

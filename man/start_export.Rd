@@ -9,6 +9,7 @@ start_export(
   template_id = NULL,
   version = NULL,
   export_type = "tabular",
+  return_time = FALSE,
   server,
   user,
   password
@@ -26,6 +27,9 @@ Do not specify both template_id and qx_name.}
 \item{export_type}{Data type to export. Valid options are:  tablular, stata, spss,
 binary, paradata. Default is tabular.}
 
+\item{return_time}{Option to return the time that the export was started. Start time will
+be in UTC.}
+
 \item{server}{Prefix for the survey server. It is whatever comes before
 mysurvey.solutions: [prefix].mysurvey.solutions.}
 
@@ -34,7 +38,7 @@ mysurvey.solutions: [prefix].mysurvey.solutions.}
 \item{password}{Password for the API user on the server.}
 }
 \value{
-Starts the export for the questionnaire and returns the start time in UTC.
+Starts the export for the questionnaire.
 }
 \description{
 \code{start_export} starts the export of a version of a questionnaire for a specified
@@ -42,7 +46,8 @@ data type
 }
 \examples{
 \dontrun{
-start_time <- start_export(qx_name="Labour Force Survey Q1", version=4,
+start_time <- start_export(qx_name="Labour Force Survey Q1",
+version=4, start_time=TRUE,
 server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 }
 }

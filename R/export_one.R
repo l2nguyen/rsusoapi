@@ -10,6 +10,8 @@
 #' @param version Version number of questionnaire
 #' @param export_type Data type to export. Valid options are:  tablular, stata, spss,
 #' binary, paradata. Default is tabular.
+#' @param return_time Option to return the time that the export was started. Start time will
+#' be in UTC.
 #' @param server Prefix for the survey server. It is whatever comes before
 #' mysurvey.solutions: [prefix].mysurvey.solutions.
 #' @param user Username for the API user on the server.
@@ -19,14 +21,16 @@
 #' @export
 #' @rdname start_export
 #'
-#' @return Starts the export for the questionnaire and returns the start time in UTC.
+#' @return Starts the export for the questionnaire.
 #' @examples
 #' \dontrun{
-#' start_time <- start_export(qx_name="Labour Force Survey Q1", version=4,
+#' start_time <- start_export(qx_name="Labour Force Survey Q1",
+#' version=4, start_time=TRUE,
 #' server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #' }
-start_export <- function(qx_name=NULL, template_id=NULL, version=NULL,
-                         export_type = "tabular", server, user, password){
+start_export <- function(qx_name = NULL, template_id = NULL, version = NULL,
+                         export_type = "tabular", return_time = FALSE,
+                         server, user, password){
 
   #== CHECK PARAMETERS
   if(is.null(qx_name) & is.null(template_id)){
@@ -56,7 +60,7 @@ start_export <- function(qx_name=NULL, template_id=NULL, version=NULL,
   }
 
   # check that server, user, password are non-missing and strings
-  for (x in c("server", "user", "password")) {
+  for (x in c("server", "user", "password", "export_type")) {
     if (!is.character(get(x))) {
       stop(x, "has to be a string.")
     }
@@ -80,7 +84,6 @@ start_export <- function(qx_name=NULL, template_id=NULL, version=NULL,
 
   # build base URL for API
   api_url <- paste0(server_url, "/api/v1")
-
   # check if list of questionnaire already exists
   qnrList_all <- get_qx(server, user = user, password = password) %>%
     dplyr::mutate(TemplateId = gsub("-", "", .data$QuestionnaireId))
@@ -141,11 +144,13 @@ start_export <- function(qx_name=NULL, template_id=NULL, version=NULL,
     # convert start time into UTC for standardization with server response time
     start_time_utc <- lubridate::with_tz(start_time, "UTC")
     # print message
-    message("Requesting data for ", message_name,
-            " v", version,
-            " to be compiled on server.")
+    message("Export for ", export_type, " data for ", message_name,
+            " v", version, " started on ", start_time, " GMT.")
 
-    return(start_time_utc)
+    # return start time if requested by user
+    if (return_time){
+      return(start_time_utc)
+    }
 
   } else if (httr::status_code(startExport) == 401) {   # login error
     stop("Incorrect username or password.")

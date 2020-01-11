@@ -49,6 +49,7 @@ using a tablet, this variable will be null.
 }
 \examples{
 \dontrun{
+
 ## Get data on all interviewers that are currently not archived on server
 all_ints <- get_interviewers(server = "lfs2018",
 user = "APIuser2018", password = "SafePassword123")

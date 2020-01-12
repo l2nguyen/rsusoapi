@@ -12,9 +12,9 @@ get_asgmts_list(
   archived = FALSE,
   output = "df",
   output_path = NULL,
-  server = "",
-  user = "",
-  password = ""
+  server = NULL,
+  user = NULL,
+  password = NULL
 )
 }
 \arguments{

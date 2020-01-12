@@ -4,7 +4,13 @@
 \alias{get_interviewers}
 \title{Get information about interviewers on the server}
 \usage{
-get_interviewers(super_names = NULL, super_ids = NULL, server, user, password)
+get_interviewers(
+  super_names = NULL,
+  super_ids = NULL,
+  server = NULL,
+  user = NULL,
+  password = NULL
+)
 }
 \arguments{
 \item{super_names}{Usernames of the supervisors that you would like to get the list of

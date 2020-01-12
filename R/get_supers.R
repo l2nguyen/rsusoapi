@@ -28,16 +28,17 @@
 #' get_supers(server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #' }
 
-get_supers <- function(server, user, password) {
+get_supers <- function(server=NULL, user=NULL, password=NULL) {
+  #== CHECK PARAMETERS
+  # NOTE: Look at utils.R file for code for checks
+
   # check that server, user, password are non-missing and strings
-  for (x in c("server", "user", "password")) {
-    if (!is.character(get(x))) {
-      stop(x, "has to be a string.")
-    }
-    if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter is not specified in the program:", x))
-    }
-  }
+  check_server_params(server)
+  check_server_params(user)
+  check_server_params(password)
+
+  # check internet connection
+  check_internet()
 
   server <- tolower(trimws(server))
 
@@ -45,11 +46,7 @@ get_supers <- function(server, user, password) {
   server_url <- paste0("https://", server, ".mysurvey.solutions")
 
   # Check server exists
-  tryCatch(httr::http_error(server_url),
-           error=function(err) {
-             err$message <- paste(server, "is not a valid server.")
-             stop(err)
-           })
+  check_server(server_url)
 
   # build base URL for API
   api_url <- paste0(server_url, "/api/v1")

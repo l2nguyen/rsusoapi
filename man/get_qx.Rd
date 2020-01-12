@@ -4,7 +4,7 @@
 \alias{get_qx}
 \title{Get all templates imported on the server}
 \usage{
-get_qx(server, user, password)
+get_qx(server = NULL, user = NULL, password = NULL)
 }
 \arguments{
 \item{server}{Prefix for the survey server. It is whatever comes before

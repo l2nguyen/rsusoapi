@@ -4,7 +4,7 @@
 \alias{get_supers}
 \title{Get information about supervisors on the server}
 \usage{
-get_supers(server, user, password)
+get_supers(server = NULL, user = NULL, password = NULL)
 }
 \arguments{
 \item{server}{Prefix for the survey server. It is whatever comes before

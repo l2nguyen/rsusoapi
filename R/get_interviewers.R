@@ -56,30 +56,32 @@
 #' server = "lfs2018", user = "APIuser2018", password = "SafePassword123")
 #' }
 
-get_interviewers <- function(super_names=NULL, super_ids=NULL,
-                             server, user, password){
-  #=== BASIC CHECKS
-  # check that server, login, password, and data type are non-missing
-  for (x in c("server", "user", "password")) {
-    if (!is.character(get(x))) {
-      stop(x, "has to be a string.")
-    }
-    if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter is not specified:", x))
-    }
-  }
+get_interviewers <- function(super_names = NULL, super_ids = NULL,
+                             server = NULL, user = NULL, password = NULL){
+  #== CHECK PARAMETERS
+  # NOTE: Look at utils.R file for code for checks
+
+  # check that server, user, password are non-missing and strings
+  check_server_params(server)
+  check_server_params(user)
+  check_server_params(password)
 
   # check that not both qx name and template id is specified
   if(!is.null(super_names) & !is.null(super_ids)){
     stop("Specify only either name or user IDs for supervisors.")
   }
 
-  # build base URL for API
+  #==== build base URL for API
   server <- tolower(trimws(server))
 
+  # check server exists
+  server_url <- paste0("https://", server, ".mysurvey.solutions")
+
+  # check server is valid
+  check_server(server_url)
+
   # build base URL for API
-  api_url <- sprintf("https://%s.mysurvey.solutions/api/v1",
-                     server)
+  api_url <- paste0(server_url, "/api/v1")
 
   #==> GET DF OF SUPERVISORS
   all_supers <- get_supers(server, user, password)

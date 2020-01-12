@@ -38,30 +38,23 @@
 #' user = "APIuser2018", password = "SafePassword123")
 #' }
 
-interview_stats <- function(ids=NULL, server, user, password){
+interview_stats <- function(ids=NULL, server=NULL, user=NULL, password=NULL){
 
-  ###====== CHECK INPUTS ======###
+  #== CHECK PARAMETERS
+  # NOTE: Look at utils.R file for code for checks
+
   # check that server, user, password are non-missing and strings
-  for (x in c("server", "user", "password")) {
-    if (!is.character(get(x))) {
-      stop(x, "has to be a string.")
-    }
-    if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter needs to be specified:", x))
-    }
-  }
+  check_server_params(server)
+  check_server_params(user)
+  check_server_params(password)
 
   server <- tolower(trimws(server))
 
   # check server exists
   server_url <- paste0("https://", server, ".mysurvey.solutions")
 
-  # Check server exists
-  tryCatch(httr::http_error(server_url),
-           error=function(err) {
-             err$message <- paste(server, "is not a valid server.")
-             stop(err)
-           })
+  # check server is valid
+  check_server(server_url)
 
   # build base URL for API
   api_url <- paste0(server_url, "/api/v1")

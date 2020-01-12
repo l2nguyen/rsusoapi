@@ -4,7 +4,7 @@
 \alias{interview_stats}
 \title{Get information about an interview}
 \usage{
-interview_stats(ids = NULL, server, user, password)
+interview_stats(ids = NULL, server = NULL, user = NULL, password = NULL)
 }
 \arguments{
 \item{ids}{Interview Id. The interview Id can have dashes or not.

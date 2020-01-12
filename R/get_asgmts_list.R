@@ -61,20 +61,17 @@
 get_asgmts_list <- function(template_id = NULL, qx_name = NULL, version = NULL,
                             responsible = "", archived = FALSE,
                             output = "df", output_path = NULL,
-                            server="", user="", password="")
+                            server = NULL, user = NULL, password = NULL)
 {
   # -------------------------------------------------------------
   # CHECK ALL INPUTS
   # -------------------------------------------------------------
-  # check that server, login, password are non-missing
-  for (x in c("server", "user", "password")) {
-    if (!is.character(get(x))) {
-      stop(x, "has to be a string.")
-    }
-    if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter is not specified in the program:", x))
-    }
-  }
+  # NOTE: Look at utils.R file for code for checks
+
+  # check that server, user, password are non-missing and strings
+  check_server_params(server)
+  check_server_params(user)
+  check_server_params(password)
 
   # Check output is a valid output data type
   if (tolower(output) %in% c("df", "tab", "excel") == FALSE) {
@@ -91,24 +88,11 @@ get_asgmts_list <- function(template_id = NULL, qx_name = NULL, version = NULL,
     stop("Specify either TRUE or FALSE for archived status.")
   }
 
-  # check version is numeric
-  if (!is.numeric(version)) {
-    if (is.null(version)){
-      stop("Specify version number.")
-    } else if (is.na(as.numeric(version))) {
-      stop("Version number ", version, " is not numeric.")
-    } else {
-      version <- as.numeric(version)
-    }
-  }
+  # check version is numeric, convert to numeric if it is a character number
+  version <- check_version(version)
 
-  if(is.null(qx_name) & is.null(template_id)){
-    stop("Either qx_name or template_id must be specified.")
-  }
-  # check that not both qx name and template id is specified
-  if(!is.null(qx_name) & !is.null(template_id)){
-    stop("Specify only either qx_name or template_id.")
-  }
+  # check that only either questionnaire name or template_id is specified
+  check_only_one(qx_name, template_id)
 
   # -------------------------------------------------------------
   # Get template id if only questionnaire name is specified
@@ -134,11 +118,17 @@ get_asgmts_list <- function(template_id = NULL, qx_name = NULL, version = NULL,
   # Call API
   # -------------------------------------------------------------
 
-  # build base URL for API
+  #==== build base URL for API
   server <- tolower(trimws(server))
 
-  api_url <- sprintf("https://%s.mysurvey.solutions/api/v1",
-                     server)
+  # check server exists
+  server_url <- paste0("https://", server, ".mysurvey.solutions")
+
+  # check server is valid
+  check_server(server_url)
+
+  # build base URL for API
+  api_url <- paste0(server_url, "/api/v1")
 
   # build api endpoint
   endpoint <- paste0(api_url, "/assignments")

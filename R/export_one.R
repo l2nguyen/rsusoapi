@@ -31,25 +31,25 @@
 start_export <- function(qx_name = NULL, template_id = NULL, version = NULL,
                          export_type = "tabular", return_time = FALSE,
                          server=NULL, user=NULL, password=NULL){
-
   #== CHECK PARAMETERS
   # NOTE: Look at utils.R file for code for checks
-  # check internet connection
-  check_internet()
 
   # check that server, user, password are non-missing and strings
   check_server_params(server)
   check_server_params(user)
   check_server_params(password)
 
-  # Check output is a valid output data type
-  check_valid_type(export_type)
-
   # check that only either questionnaire name or template_id is specified
   check_only_one(qx_name, template_id)
 
+  # Check output is a valid output data type
+  check_valid_type(export_type)
+
   # check version is numeric, convert to numeric if it is a character number
   version <- check_version(version)
+
+  # check internet connection
+  check_internet()
 
   #==== build base URL for API
   server <- tolower(trimws(server))
@@ -57,12 +57,8 @@ start_export <- function(qx_name = NULL, template_id = NULL, version = NULL,
   # check server exists
   server_url <- paste0("https://", server, ".mysurvey.solutions")
 
-  # Check server exists
-  tryCatch(httr::http_error(server_url),
-           error=function(err) {
-             err$message <- paste(server, "is not a valid server.")
-             stop(err)
-           })
+  # check server is valid
+  check_server(server_url)
 
   # build base URL for API
   api_url <- paste0(server_url, "/api/v1")

@@ -10,9 +10,9 @@ start_export(
   version = NULL,
   export_type = "tabular",
   return_time = FALSE,
-  server,
-  user,
-  password
+  server = NULL,
+  user = NULL,
+  password = NULL
 )
 }
 \arguments{

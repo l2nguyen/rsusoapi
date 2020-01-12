@@ -9,15 +9,13 @@ check_internet <- function(){
 
 # checks server, user and password parameters are not empty
 # check those parameters are strings
-check_str_params <- function(variables){
+check_server_params <- function(var){
   # check that server, user, password are non-missing and strings
-  for (x in variables) {
-    if (nchar(get(x)) == 0) {
-      stop("The following parameter needs to be specified: ", x, call.=FALSE)
-    } else if (!is.character(get(x))) {
-      stop(x, "has to be a string.", call. = FALSE)
+  if (is.null(var)){
+    stop(deparse(substitute(var)), " must be specified.", call. = FALSE)
+    } else if (!is.character(var)) {
+      stop(deparse(substitute(var)), "has to be a string.", call. = FALSE)
     }
-  }
 }
 
 # check server exists
@@ -59,4 +57,12 @@ check_version <- function(x){
         return(numeric_x)
       }
   } else{ return(x) }
+}
+
+check_valid_type <- function(type){
+  if ((tolower(type) %in%
+       c("tabular", "stata", "spss", "binary", "paradata")) == FALSE) {
+    stop("Data type has to be one of the following: Tablular, STATA, SPSS, Binary, paradata",
+         call. = FALSE)
+  }
 }

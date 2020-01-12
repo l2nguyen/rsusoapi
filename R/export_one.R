@@ -30,44 +30,26 @@
 #' }
 start_export <- function(qx_name = NULL, template_id = NULL, version = NULL,
                          export_type = "tabular", return_time = FALSE,
-                         server, user, password){
+                         server=NULL, user=NULL, password=NULL){
 
   #== CHECK PARAMETERS
-  if(is.null(qx_name) & is.null(template_id)){
-    stop("Either qx_name or template_id must be specified.")
-  }
-  # check that not both qx name and template id is specified
-  if(!is.null(qx_name) & !is.null(template_id)){
-    stop("Specify only either qx_name or template_id.")
-  }
-
-  # check version is numeric
-  if (!is.numeric(version)) {
-    if (is.null(version)){
-      stop("Specify version number.")
-    } else if (is.na(as.numeric(version))) {
-      stop("Version number ", version, " is not a number.")
-    } else {
-      version <- as.numeric(version)
-    }
-  }
-
-  # Check output is a valid output data type
-  if ((tolower(export_type) %in%
-       c("tabular", "stata", "spss", "binary", "paradata")) == FALSE) {
-    stop("Data type has to be one of the following: Tablular, STATA, SPSS, Binary, paradata"
-         )
-  }
+  # NOTE: Look at utils.R file for code for checks
+  # check internet connection
+  check_internet()
 
   # check that server, user, password are non-missing and strings
-  for (x in c("server", "user", "password", "export_type")) {
-    if (!is.character(get(x))) {
-      stop(x, "has to be a string.")
-    }
-    if (nchar(get(x)) == 0) {
-      stop(paste("The following parameter needs to be specified:", x))
-    }
-  }
+  check_server_params(server)
+  check_server_params(user)
+  check_server_params(password)
+
+  # Check output is a valid output data type
+  check_valid_type(export_type)
+
+  # check that only either questionnaire name or template_id is specified
+  check_only_one(qx_name, template_id)
+
+  # check version is numeric, convert to numeric if it is a character number
+  version <- check_version(version)
 
   #==== build base URL for API
   server <- tolower(trimws(server))
